@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper d-flex justify-content-between align-items-start shadow my-4 p-4">
+        {% if content %}
+            {% comment %} <h1>{{title}}</h1> {% endcomment %}
+            <div class="content">
+                {{content|safe}}
+            </div>
+            <a role="button" class="btn btn-outline-primary" href="{% url 'encyclopedia:editEntry' title %}">Edit</a>
+        {% else %}
+            <div class="text-center mx-auto">
+                <h1>{{title}}</h1>
+                <strong>404 Not Found</strong>
+                <p>
+                    <span>No Content for this Entry!</span>
+                </p>
+                <a role="button" class="btn btn-outline-primary" href="{% url 'encyclopedia:createEntry' %}">Create One</a>
+                <a role="button" class="btn btn-outline-secondary" href="{% url 'encyclopedia:index' %}">Home</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-start align-items-start py-3">
+    <h1 class="m-0 p-0">All Pages</h1>
+    <span class="badge bg-danger rounded-pill">{{entries_len}}</span>
+</div>
+
+    <div class="content-wrapper d-flex justify-content-between align-items-start flex-wrap shadow my-4 p-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+            {% if entries %}
+                {% for entry in entries %}
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title m-0">
+                                        <a role="link" class="text-decoration-none" href="{% url 'encyclopedia:getEntry' entry %}">{{entry}}</a>
+                                    </h5>
+                                    <p class="card-text m-0">
+                                        <a role="link" class="btn btn-outline-info rounded-pill btn-sm" href="{% url 'encyclopedia:getEntry' entry %}">View</a>
+                                        <a role="link" class="btn btn-outline-primary rounded-pill btn-sm" href="{% url 'encyclopedia:editEntry' entry %}">Edit</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <h4>No Entries Yet</h4>
+                    <a role="button" class="btn btn-outline-primary" href="{% url 'encyclopedia:createEntry' %}">Create One</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

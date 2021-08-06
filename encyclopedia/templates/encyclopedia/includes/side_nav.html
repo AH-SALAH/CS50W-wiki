@@ -1,0 +1,21 @@
+<h2>Wiki</h2>
+<form action="{% url 'encyclopedia:searchEntries' %}" method="GET">
+    {% comment %} {% csrf_token %} {% endcomment %}
+    <input class="search form-control" type="text" name="q" placeholder="Search Encyclopedia">
+</form>
+
+<div class="list-group mt-4">
+    {% url 'encyclopedia:index' as index %}
+    {% url 'encyclopedia:createEntry' as createEntry %}
+    {% url 'encyclopedia:randomEntry' as randomEntry %}
+    
+    <a 
+        href="{% url 'encyclopedia:index' %}" 
+        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {% if request.path == index %} active {% endif %}" 
+    >
+        Home
+        {% comment %} <span class="badge bg-danger rounded-pill">{{entries_len}}</span> {% endcomment %}
+    </a>
+    <a href="{% url 'encyclopedia:createEntry' %}" class="list-group-item list-group-item-action {% if request.path == createEntry %} active {% endif %}">Create New Page</a>
+    <a href="{% url 'encyclopedia:randomEntry' %}" class="list-group-item list-group-item-action {% if request.path == randomEntry %} active {% endif %}">Random Page</a>
+</div>
