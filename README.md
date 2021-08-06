@@ -10,8 +10,10 @@
 - Python
 - Django
 
+---
 ### Structure
 
+```
 ├── encyclopedia
 │   ├── forms
 │   │   └── add_entry.py
@@ -60,3 +62,4 @@
 ├── Pipfile
 ├── Pipfile.lock
 └── README.md
+```
